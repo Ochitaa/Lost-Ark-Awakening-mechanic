@@ -13,9 +13,12 @@ public class MainCharacterController : MonoBehaviour
     Quaternion targetRotation;
     Transform cam;
 
+    Animator anim;
+
     void Start()
     {
         cam = Camera.main.transform;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -30,8 +33,10 @@ public class MainCharacterController : MonoBehaviour
     }
     void GetInput()
     {
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
+        input.x = Input.GetAxis("Horizontal");
+        input.y = Input.GetAxis("Vertical");
+        anim.SetFloat("BlendX", input.x);
+        anim.SetFloat("BlendY", input.y);
     }
     void CalculateDirection()
     {
